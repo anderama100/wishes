@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Wish List</title>
+</head>
+
+<body>
+    <div class="main-container" style="width: 50px; margin: 0 auto; text-align: center;">
+        <h1>Wish List Items</h1>
+        {% if listWishes.count == 0 %}
+        <p>No wishes yet</p>
+        {% else %}
+        <table style="display: flexbox;">
+            <th>
+                <tr>
+                    <td>Description</td>
+                    <td>Delete</td>
+                </tr>
+            </th>
+            {% for n in listWishes %}
+            <tr>
+                <td>{{ n.wish }}</td>
+                <td><a href="{% url 'delete' n.id %}">X</a></td>
+            </tr>
+            {%endfor%}
+        </table>
+        {% endif %}
+        <hr>
+        <a href="{% url 'insert_wish' %}"><button>Insert Wish</button></a>
+    </div>
+
+
+</body>
+
+</html>
